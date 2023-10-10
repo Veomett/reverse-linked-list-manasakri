@@ -1,30 +1,19 @@
-/***
- * Created by Ellen Veomett, using code from David Galles
- * for CS 245
- * A good deal of this code is from:
- * https://www.cs.usfca.edu/~galles/cs245/lecture/LinkedList.java.html
- * Note: right now we don't use the List interface or the ListIterator
- */
+
 
 public class LinkedList
 {
     public static void main(String[] args) {
-        /***
-         * The code below gives you a sample of creating and printing a linked list.
-         * See the other parts of this class for the full class code
-         */
+
         LinkedList myLL = new LinkedList();
         myLL.add(3);
         myLL.add(0);
         myLL.add(-2);
+
         myLL.print();
         myLL.reverseList();
         myLL.print();
 
-        /***
-         * The code below is simply to highlight for you the fact that the LinkedList
-         * class allows for different objects.
-         */
+
         LinkedList stringLL = new LinkedList();
         stringLL.add("hello");
         stringLL.add("world");
@@ -52,18 +41,24 @@ public class LinkedList
         length = 0;
     }
     public void reverseList() {
-        /***
-         * THIS IS THE reverseList CODE THAT YOU WILL BE EDITING
-         * DO NOT EDIT ANY OTHER CODE EXCEPT FOR THIS METHOD, PLUS THE MAIN METHOD
-         * Note: the code below is not what you want to keep.  What you
-         * *do* want to keep is that you reverse the linked list, and make a new head
-         * which points to the first element of the reversed linked list
-         */
+        Link last = null;
+        Link curr = head.next;
+        Link next;
 
-        Link newHead = new Link();
-        Link firstElement = new Link(42);
-        newHead.next = firstElement;
-        head = newHead;
+       //error check
+        if (length <= 1) {
+            return;
+        }
+
+        while (curr != null) { //while the potential next element is not empty, continue loop
+            next = curr.next; //storing variable value
+            curr.next = last; // next points to the last node
+            last = curr;
+            curr = next;
+        }
+
+        head.next = last; //new inserted element becomes head
+
     }
 
     /*----------------------------------------------------- */
